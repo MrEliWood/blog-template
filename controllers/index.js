@@ -6,11 +6,14 @@ const router = express.Router();
 const frontEnd = require("./frontEndRoutes");
 router.use("/", frontEnd);
 
-const blogRoutes = require("./blogRoutes");
-router.use("/api/blogs", blogRoutes);
-
 const userRoutes = require("./userRoutes");
-router.use("/api/users", userRoutes);
+router.use("/users", userRoutes);
+
+const blogRoutes = require("./blogRoutes");
+router.use("/blogs", blogRoutes);
+
+const commentRoutes = require("./commentRoutes");
+router.use("/comments", commentRoutes);
 
 // export
 module.exports = router;

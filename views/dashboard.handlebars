@@ -1,0 +1,26 @@
+{{!-- headline --}}
+<h1>Welcome, {{username}}</h1>
+
+{{!-- content --}}
+<h2>Your Blogs</h2>
+
+<form action="" id="newBlog">
+
+    <input type="text" id="newTitle" placeholder="title">
+    <textarea id="newBody" cols="30" rows="10"></textarea>
+
+    <button id="blogSubmit">Submit</button>
+
+</form>
+
+{{#each Blogs}}
+
+    <h3 class="blogTitle">{{title}}</h3>
+    <p class="timestamp">{{formatTime updatedAt}}</p>
+    <p class="blogBody">{{body}}</p>
+
+    <a class="delete">Delete</a>
+
+{{/each}}
+
+<script src="/js/dashboard.js"></script>

@@ -3,14 +3,14 @@ const express = require("express");
 const router = express.Router();
 const { User, Blog, Comment } = require("../models");
 
-// GET all blogs
+// GET all comments
 router.get("/", (req, res) => {
 
-    Blog.findAll({
-            include: [Comment]
+    Comment.findAll({
+            include: [User, Blog]
         })
-        .then(dbBlogs => {
-            res.json(dbBlogs);
+        .then(dbComments => {
+            res.json(dbComments);
         })
         .catch(err => {
             res.status(500).json({ msg: "An error occured!", err });
@@ -18,14 +18,14 @@ router.get("/", (req, res) => {
 
 });
 
-// GET one blog
+// GET one comment
 router.get("/:id", (req, res) => {
 
-    Blog.findByPk(req.params.id, {
-            include: [Comment]
+    Comment.findByPk(req.params.id, {
+            include: [User, Blog]
         })
-        .then(dbBlog => {
-            res.json(dbBlog);
+        .then(dbComment => {
+            res.json(dbComment);
         })
         .catch(err => {
             res.status(500).json({ msg: "An error occured!", err });
@@ -33,20 +33,20 @@ router.get("/:id", (req, res) => {
 
 });
 
-// POST new blog
+// POST new comment
 router.post("/", (req, res) => {
 
     if (!req.session.user) {
         return res.redirect("/login");
     };
-    
-    Blog.create({
-        title: req.body.title,
+
+    Comment.create({
         body: req.body.body,
-        UserId: req.session.user.id
+        UserId: req.session.user.id,
+        BlogId: req.body.blog.id
         })
-        .then(newBlog => {
-            res.json(newBlog);
+        .then(newComment => {
+            res.json(newComment);
         })
         .catch(err => {
             res.status(500).json({ msg: "An error occured!", err });
@@ -54,16 +54,16 @@ router.post("/", (req, res) => {
 
 });
 
-// PUT blog update
+// PUT comment update
 router.put("/:id", (req, res) => {
 
-    Blog.update(req.body, {
+    Comment.update(req.body, {
         where: {
             id: req.params.id
         }
         })
-        .then(updatedBlog => {
-            res.json(updatedBlog);
+        .then(updatedComment => {
+            res.json(updatedComment);
         })
         .catch(err => {
             res.status(500).json({ msg: "An error occured!", err });
@@ -71,16 +71,16 @@ router.put("/:id", (req, res) => {
 
 });
 
-// DELETE a blog
+// DELETE a comment
 router.delete("/:id", (req, res) => {
 
-    Blog.destroy({
+    Comment.destroy({
         where: {
             id: req.params.id
         }
         })
-        .then(deletedBlog => {
-            res.json(deletedBlog);
+        .then(deletedComment => {
+            res.json(deletedComment);
         })
         .catch(err => {
             res.status(500).json({ msg: "An error occured!", err });

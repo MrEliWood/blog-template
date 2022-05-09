@@ -11,11 +11,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // import models to sync
-const { User, Blog } = require("./models");
+const { User, Blog, Comment } = require("./models");
 
 // handlers for express data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// static directory
+app.use(express.static('public'));
 
 // configure sessions
 const sess = {
@@ -32,11 +35,11 @@ const sess = {
 
 app.use(session(sess));
 
-// static directory
-app.use(express.static('public'));
+// import custom helpers
+const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ helpers });
 
 // configure handlebars
-const hbs = exphbs.create({});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 

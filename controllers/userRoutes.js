@@ -8,8 +8,8 @@ const bcrypt = require("bcrypt");
 router.get("/", (req, res) => {
 
     User.findAll({
-        include: [Blog]
-    })
+            include: [Blog]
+        })
         .then(dbUsers => {
             res.json(dbUsers);
         })
@@ -22,7 +22,9 @@ router.get("/", (req, res) => {
 // GET one user
 router.get("/:id", (req, res) => {
 
-    User.findByPk(req.params.id, {})
+    User.findByPk(req.params.id, {
+            include: [Blog]
+        })
         .then(dbUser => {
             res.json(dbUser);
         })
@@ -116,12 +118,5 @@ router.post("/login", (req, res) => {
 
 });
 
-// logout
-router.get("/logout", (req, res) => {
-
-    req.session.destroy();
-    res.redirect("/");
-
-});
-
+// export
 module.exports = router;
