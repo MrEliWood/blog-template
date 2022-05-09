@@ -7,7 +7,7 @@ const { User, Blog, Comment } = require("../models");
 router.get("/", (req, res) => {
 
     Blog.findAll({
-            include: [Comment]
+            include: { all: true, nested: true }
         })
         .then(dbBlogs => {
             res.json(dbBlogs);
@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
 
     Blog.findByPk(req.params.id, {
-            include: [Comment]
+            include: { all: true, nested: true }
         })
         .then(dbBlog => {
             res.json(dbBlog);
@@ -36,6 +36,8 @@ router.get("/:id", (req, res) => {
 // POST new blog
 router.post("/", (req, res) => {
 
+    console.log(req.session.user.id)
+
     if (!req.session.user) {
         return res.redirect("/login");
     };
@@ -43,7 +45,7 @@ router.post("/", (req, res) => {
     Blog.create({
         title: req.body.title,
         body: req.body.body,
-        UserId: req.session.user.id
+        user_id: req.session.user.id
         })
         .then(newBlog => {
             res.json(newBlog);

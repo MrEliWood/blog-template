@@ -4,12 +4,36 @@
 {{!-- content --}}
 {{#each blogs}}
 
-    <h3 class="blogTitle">{{title}}</h3>
-    <p class="blogAuthor">{{username}}</p>
-    <p class="timestamp">{{formatTime updatedAt}}</p>
-    <p class="blogBody">{{body}}</p>
+    <div class="blog" id={{id}}>
 
-    <p class="comment">{{comment.body}}</p>
-    <p class="commentAuthor">{{comment.username}}</p>
+        <h3 class="blogTitle">{{title}}</h3>
+        <p class="blogAuthor">{{User.username}}</p>
+        <p class="timestamp">{{formatTime updatedAt}}</p>
+        <p class="blogBody">{{body}}</p>
+        <button class="commentButton">Comment</button>
+
+        <form action="" class="newComment">
+
+            <textarea class="commentInput" cols="30" rows="10"></textarea>
+            <button class="commentSubmit" value={{id}}>Submit</button>
+
+        </form>
+
+    </div>
+
+
+    {{#each Comments}}
+
+        <div class="comments" id={{id}}>
+
+            <p class="commentBody">{{body}}</p>
+            <p class="commentAuthor">{{User.username}}</p>
+
+        </div>
+
+    {{/each}}
 
 {{/each}}
+
+{{!-- link script --}}
+<script src="/js/comments.js"></script>

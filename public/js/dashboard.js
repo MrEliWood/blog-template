@@ -6,7 +6,7 @@ document.querySelector("#blogSubmit").addEventListener("click", function(event) 
     // construct body with user blogs
     const blogObject = {
         title: document.querySelector("#newTitle").value,
-        body: document.querySelector("#newBody").value
+        body: document.querySelector("#newBody").value,
     };
 
     // post blog request
@@ -20,8 +20,8 @@ document.querySelector("#blogSubmit").addEventListener("click", function(event) 
 
     }).then( res => {
 
-        if(res.ok){
-            location.href = "/dashboard";
+        if (res.ok) {
+            location.reload();
         } else {
             alert("Post error, please try again.");
         };

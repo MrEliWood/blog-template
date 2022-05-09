@@ -1,14 +1,14 @@
 // import modules and packages
 const express = require("express");
 const router = express.Router();
-const { User, Blog } = require("../models/");
+const { User, Blog, Comment } = require("../models/");
 const bcrypt = require("bcrypt");
 
 // GET all users
 router.get("/", (req, res) => {
 
     User.findAll({
-            include: [Blog]
+            include: { all: true, nested: true }
         })
         .then(dbUsers => {
             res.json(dbUsers);
@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
 
     User.findByPk(req.params.id, {
-            include: [Blog]
+            include: { all: true, nested: true }
         })
         .then(dbUser => {
             res.json(dbUser);

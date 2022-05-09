@@ -7,7 +7,7 @@ const { User, Blog, Comment } = require("../models");
 router.get("/", (req, res) => {
 
     Comment.findAll({
-            include: [User, Blog]
+            include: { all: true, nested: true }
         })
         .then(dbComments => {
             res.json(dbComments);
@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
 
     Comment.findByPk(req.params.id, {
-            include: [User, Blog]
+            include: { all: true, nested: true }
         })
         .then(dbComment => {
             res.json(dbComment);
@@ -42,8 +42,8 @@ router.post("/", (req, res) => {
 
     Comment.create({
         body: req.body.body,
-        UserId: req.session.user.id,
-        BlogId: req.body.blog.id
+        user_id: req.session.user.id,
+        blog_id: req.body.blog_id
         })
         .then(newComment => {
             res.json(newComment);

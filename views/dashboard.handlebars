@@ -2,7 +2,7 @@
 <h1>Welcome, {{username}}</h1>
 
 {{!-- content --}}
-<h2>Your Blogs</h2>
+<h2>New Blog Post</h2>
 
 <form action="" id="newBlog">
 
@@ -13,14 +13,40 @@
 
 </form>
 
-{{#each Blogs}}
+{{!-- user blogs --}}
+<h2>Your Blogs</h2>
 
-    <h3 class="blogTitle">{{title}}</h3>
-    <p class="timestamp">{{formatTime updatedAt}}</p>
-    <p class="blogBody">{{body}}</p>
+{{#each blogs}}
 
-    <a class="delete">Delete</a>
+    <div class="blog" id={{id}}>
+
+        <h3 class="blogTitle">{{title}}</h3>
+        <p class="timestamp">{{formatTime updatedAt}}</p>
+        <p class="blogBody">{{body}}</p>
+        <button class="commentButton">Comment</button>
+
+        <form action="" class="newComment">
+
+            <textarea class="commentInput" cols="30" rows="10"></textarea>
+            <button class="commentSubmit">Submit</button>
+
+        </form>
+
+    </div>
+
+
+    {{#each Comments}}
+
+        <div class="comments" id={{id}}>
+
+            <p class="commentBody">{{body}}</p>
+            <p class="commentAuthor">{{User.username}}</p>
+
+        </div>
+
+    {{/each}}
 
 {{/each}}
 
-<script src="/js/dashboard.js"></script>
+{{!-- link script --}}
+<script src="/js/comments.js"></script>

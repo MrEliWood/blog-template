@@ -7,7 +7,7 @@ const { User, Blog, Comment } = require('../models');
 router.get("/", (req,res) => {
 
     Blog.findAll({
-            include: [Comment]
+            include: { all: true, nested: true }
         })
         .then(blogs => {
             const hbsBlogs = blogs.map(blog => blog.get({ plain: true }));
@@ -55,14 +55,26 @@ router.get("/dashboard", (req,res) => {
         return res.redirect("/login");
     };
 
-    User.findByPk(req.session.user.id, {
-        include: [Blog]
-    }).then(userData=>{
-        const hbsData = userData.get({ plain: true })
-        hbsData.loggedIn = req.session.user? true : false;
+    // User.findByPk(req.session.user.id, {
+    //     include: { all: true, nested: true }
+    //     })
+    //     .then(userData => {
+    //     const hbsData = userData.get({ plain: true });
+    //     hbsData.loggedIn = req.session.user? true : false;
 
-        res.render("dashboard", hbsData);
-    });
+    //     res.render("dashboard", hbsData);
+    //     });
+
+    Blog.findAll({
+            where: { user_id: req.session.user.id },
+            include: { all: true, nested: true }
+        })
+        .then(blogs => {
+            const hbsBlogs = blogs.map(blog => blog.get({ plain: true }));
+            const loggedIn = req.session.user ? true : false;
+
+            res.render("dashboard", { blogs: hbsBlogs, loggedIn, username: req.session.user?.username });
+        });
 
 });
 

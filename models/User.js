@@ -4,10 +4,16 @@ const sequelize = require('../config/connection');
 const bcrypt = require("bcrypt");
 
 // define class extension
-class User extends Model {};
+class User extends Model { };
 
 // define model properties
 User.init({
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     username: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -20,9 +26,9 @@ User.init({
             len: [8]
         }
     }
-},{
+}, {
     // hash password
-    hooks:{
+    hooks: {
         beforeCreate: async userdata => {
             userdata.password = await bcrypt.hash(userdata.password, 10);
             return userdata;

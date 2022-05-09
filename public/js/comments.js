@@ -1,32 +1,38 @@
-// listen for comment attempts
-document.querySelector("#blogSubmit").addEventListener("click", function(event) {
+const commentSubmits = document.getElementsByClassName("commentSubmit");
+const commentInputs = document.getElementsByClassName("commentInput");
 
-    event.preventDefault();
+for (let i = 0; i < commentSubmits.length; i++) {
 
-    // construct body with comment
-    const commentObject = {
-        body: document.querySelector("#newTitle").value,
-        UserId: req.session.user.id,
-        blogId: document.querySelector("#newBody").value
-    };
+    commentSubmits[i].addEventListener("click", function (event) {
 
-    // post blog request
-    fetch("/blogs",{
+        event.preventDefault();
 
-        method: "POST",
-        body: JSON.stringify(commentObject),
-        headers: {
-            "Content-Type": "application/json"
-        }
-
-    }).then( res => {
-
-        if(res.ok){
-            location.href = "/dashboard";
-        } else {
-            alert("Post error, please try again.");
+        // construct body with comment
+        const commentObject = {
+            body: commentInputs[i].value,
+            blog_id: event.target.value
         };
 
-    });
+        // post comment request
+        fetch("/comments", {
 
-});
+            method: "POST",
+            body: JSON.stringify(commentObject),
+            headers: {
+                "Content-Type": "application/json"
+            }
+
+            })
+            .then(res => {
+
+                if (res.ok) {
+                    location.reload();
+                } else {
+                    alert("Post error, please try again.");
+                };
+
+            });
+
+        });
+
+};
