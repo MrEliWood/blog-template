@@ -1,37 +1,56 @@
 {{!-- headline --}}
-<h1>Welcome!</h1>
+<h1 class="headline">Welcome!</h1>
 
 {{!-- content --}}
 {{#each blogs}}
 
     <div class="blog" id={{id}}>
 
-        <h3 class="blogTitle">{{title}}</h3>
-        <p class="blogAuthor">{{User.username}}</p>
-        <p class="timestamp">{{formatTime updatedAt}}</p>
+        <div class="blogHeader">
+
+            <div class="blogHeadline">
+
+                <h3 class="blogTitle">{{title}}</h3>
+                <p class="blogAuthor">{{User.username}}</p>
+
+            </div>
+
+            <p class="timestamp">{{formatTime updatedAt}}</p>
+
+        </div>
+
         <p class="blogBody">{{body}}</p>
         <button class="commentButton">Comment</button>
 
         <form action="" class="newComment">
 
-            <textarea class="commentInput" cols="30" rows="10"></textarea>
-            <button class="commentSubmit" value={{id}}>Submit</button>
+            <textarea class="commentInput" cols="30" rows="10" placeholder="comment text"></textarea>
+            <button class="commentSubmit" value={{id}}>Post</button>
 
         </form>
 
     </div>
 
+    <div class="comments">
 
-    {{#each Comments}}
+        {{#if Comments}}
 
-        <div class="comments" id={{id}}>
+            <h5>Comments</h5>
 
-            <p class="commentBody">{{body}}</p>
-            <p class="commentAuthor">{{User.username}}</p>
+            {{#each Comments}}
 
-        </div>
+                <div class="comment" id={{id}}>
 
-    {{/each}}
+                    <p class="commentAuthor">{{User.username}}</p>
+                    <p class="commentBody">{{body}}</p>
+
+                </div>
+
+            {{/each}}
+
+        {{/if}}
+
+    </div>
 
 {{/each}}
 

@@ -1,8 +1,13 @@
-const commentSubmits = document.getElementsByClassName("commentSubmit");
+// import all comment forms
+const commentButton = document.getElementsByClassName("commentButton");
+const commentSections = document.getElementsByClassName("newComment");
 const commentInputs = document.getElementsByClassName("commentInput");
+const commentSubmits = document.getElementsByClassName("commentSubmit");
 
-for (let i = 0; i < commentSubmits.length; i++) {
+// iterate over every comment section
+for (let i = 0; i < commentButton.length; i++) {
 
+    // listen for comment submits
     commentSubmits[i].addEventListener("click", function (event) {
 
         event.preventDefault();
@@ -33,6 +38,16 @@ for (let i = 0; i < commentSubmits.length; i++) {
 
             });
 
-        });
+    });
+
+    // listen for comment button clicks
+    commentButton[i].addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        // show and hide the comments section
+        commentSections[i].classList.toggle('visible');
+
+    });
 
 };

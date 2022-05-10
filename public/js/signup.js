@@ -9,7 +9,7 @@ document.querySelector("#signupSubmit").addEventListener("click", function(event
         password: document.querySelector("#signupPassword").value
     };
 
-    // post login request
+    // post signup request
     fetch("/users",{
 
         method: "POST",

@@ -5,15 +5,15 @@ const { User, Blog, Comment } = require("../models");
 // user seeds
 const users = [
     {
-        username: "firstuser",
+        username: "techgenius",
         password: "password1"
     },
     {
-        username: "seconduser",
+        username: "ewizard",
         password: "password2"
     },
     {
-        username: "thirduser",
+        username: "circutguru",
         password: "password3"
     }
 ];
@@ -22,17 +22,17 @@ const users = [
 const blogs = [
     {
         title: "first blog",
-        body: "This is the first blog post on this tech blog website.",
+        body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate hic omnis accusantium unde eum laborum odio. Fuga repellat aperiam voluptas? Tempora placeat quasi accusamus expedita facilis excepturi laudantium. Laudantium, iusto.",
         user_id: 1
     },
     {
         title: "second blog",
-        body: "This is the second blog post on this tech blog website.",
+        body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate hic omnis accusantium unde eum laborum odio. Fuga repellat aperiam voluptas? Tempora placeat quasi accusamus expedita facilis excepturi laudantium. Laudantium, iusto.",
         user_id: 2
     },
     {
         title: "third blog",
-        body: "This is the third blog post on this tech blog website.",
+        body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate hic omnis accusantium unde eum laborum odio. Fuga repellat aperiam voluptas? Tempora placeat quasi accusamus expedita facilis excepturi laudantium. Laudantium, iusto.",
         user_id: 3
     }
 ];
@@ -40,19 +40,34 @@ const blogs = [
 // comment seeds
 const comments = [
     {
-        body: "This is the first comment on this tech blog website.",
+        body: "Voluptate hic omnis accusantium unde eum laborum odio.",
         user_id: 2,
-        blog_id: 1
+        blog_id: 3
     },
     {
-        body: "This is the second comment on this tech blog website.",
+        body: "Fuga repellat aperiam voluptas?",
         user_id: 3,
         blog_id: 1
     },
     {
-        body: "This is the third comment on this tech blog website.",
+        body: "Tempora placeat quasi accusamus expedita facilis excepturi laudantium.",
         user_id: 1,
+        blog_id: 2
+    },
+    {
+        body: "Voluptate hic omnis accusantium unde eum laborum odio.",
+        user_id: 2,
+        blog_id: 3
+    },
+    {
+        body: "Fuga repellat aperiam voluptas?",
+        user_id: 3,
         blog_id: 1
+    },
+    {
+        body: "Tempora placeat quasi accusamus expedita facilis excepturi laudantium.",
+        user_id: 1,
+        blog_id: 2
     }
 ];
 

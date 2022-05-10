@@ -23,20 +23,22 @@
         </a>
 
         {{!-- nav bar --}}
-        {{#if loggedIn}}
+        <nav>
+            {{#if loggedIn}}
 
-            <p>Hello, {{username}}</p>
-            <p>/</p>
-            <a href="/dashboard">Dashboard</a>
-            <a href="/logout">Logout</a>
+                <p id="navUsername">{{username}}</p>
+                <p class="textDivider">|</p>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
 
-        {{else}}
+            {{else}}
 
-            <a href="/login">Login</a>
-            <p>/</p>
-            <a href="/signup">Signup</a>
+                <a href="/login">Login</a>
+                <p class="textDivider">|</p>
+                <a href="/signup">Signup</a>
 
-        {{/if}}
+            {{/if}}
+        </nav>
 
     </header>
 
