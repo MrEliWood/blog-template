@@ -49,6 +49,7 @@ nav {
 
 nav p,
 nav a {
+    color: var(--light);
     text-decoration: none;
     margin-left: 30px;
 }
