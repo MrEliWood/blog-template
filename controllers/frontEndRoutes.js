@@ -55,16 +55,6 @@ router.get("/dashboard", (req,res) => {
         return res.redirect("/login");
     };
 
-    // User.findByPk(req.session.user.id, {
-    //     include: { all: true, nested: true }
-    //     })
-    //     .then(userData => {
-    //     const hbsData = userData.get({ plain: true });
-    //     hbsData.loggedIn = req.session.user? true : false;
-
-    //     res.render("dashboard", hbsData);
-    //     });
-
     Blog.findAll({
             where: { user_id: req.session.user.id },
             include: { all: true, nested: true }

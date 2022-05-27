@@ -6,10 +6,10 @@
 
 <form action="" id="newBlog">
 
-    <input type="text" id="newTitle" placeholder="title">
-    <textarea id="newBody" cols="30" rows="10" placeholder="blog text"></textarea>
+   <input type="text" id="newTitle" placeholder="title">
+   <textarea id="newBody" cols="30" rows="10" placeholder="blog text"></textarea>
 
-    <button id="blogSubmit">Post</button>
+   <button id="blogSubmit">Post</button>
 
 </form>
 
@@ -18,53 +18,53 @@
 
 {{#each blogs}}
 
-    <div class="blog" id={{id}}>
+<div class="blog" id={{id}}>
 
-        <div class="blogHeader">
+   <div class="blogHeader">
 
-            <h3 class="blogTitle">{{title}}</h3>
-            <p class="timestamp">{{formatTime updatedAt}}</p>
+      <h3 class="blogTitle">{{title}}</h3>
+      {{!-- <p class="timestamp">{{formatTime updatedAt}}</p> --}}
 
-        </div>
+   </div>
 
-        <p class="blogBody">{{body}}</p>
+   <p class="blogBody">{{body}}</p>
 
-        <div class="userActions">
+   <div class="userActions">
 
-            <button class="commentButton">Comment</button>
-            <button class="delete" value={{id}}>Delete</button>
+      <button class="commentButton">Comment</button>
+      <button class="delete" value={{id}}>Delete</button>
 
-        </div>
+   </div>
 
-        <form action="" class="newComment">
+   <form action="" class="newComment">
 
-            <textarea class="commentInput" cols="30" rows="10" placeholder="comment text"></textarea>
-            <button class="commentSubmit" value={{id}}>Post</button>
+      <textarea class="commentInput" cols="30" rows="10" placeholder="comment text"></textarea>
+      <button class="commentSubmit" value={{id}}>Post</button>
 
-        </form>
+   </form>
 
-    </div>
+</div>
 
-    <div class="comments">
+<div class="comments">
 
-        {{#if Comments}}
+   {{#if Comments}}
 
-            <h5>Comments</h5>
+   <h5>Comments</h5>
 
-            {{#each Comments}}
+   {{#each Comments}}
 
-                <div class="comment" id={{id}}>
+   <div class="comment" id={{id}}>
 
-                    <p class="commentAuthor">{{User.username}}</p>
-                    <p class="commentBody">{{body}}</p>
+      <p class="commentAuthor">{{User.username}}</p>
+      <p class="commentBody">{{body}}</p>
 
-                </div>
+   </div>
 
-            {{/each}}
+   {{/each}}
 
-        {{/if}}
+   {{/if}}
 
-    </div>
+</div>
 
 {{/each}}
 
