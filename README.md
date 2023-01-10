@@ -1,1 +1,1 @@
-# tech-blog-demo
+# blog template
